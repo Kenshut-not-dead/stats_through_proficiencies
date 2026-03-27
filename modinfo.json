@@ -14,20 +14,16 @@
     "id": "Запускаем_расчет_при_первом_старте",
     "eoc_type": "EVENT",
     "required_event": "game_start",
-    "condition": {"u_has_trait": "stats_through_proficiencies"},
-    "effect": [
-		{ "run_eocs": "Расчет_статов" }
-	] 
+    "condition": { "u_has_trait": "stats_through_proficiencies" },
+    "effect": [ { "run_eocs": "Расчет_статов" } ]
   },
   {
     "type": "effect_on_condition",
     "id": "Запускаем_расчет_при_первом_старте1",
     "eoc_type": "EVENT",
     "required_event": "game_load",
-    "condition": {"u_has_trait": "stats_through_proficiencies"},
-    "effect": [
-		{ "run_eocs": "Расчет_статов" }
-	] 
+    "condition": { "u_has_trait": "stats_through_proficiencies" },
+    "effect": [ { "run_eocs": "Расчет_статов" } ]
   },
   {
     "type": "effect_on_condition",
@@ -35,36 +31,952 @@
     "eoc_type": "EVENT",
     "required_event": "character_wakes_up",
     "effect": [
-	{"math": [ "KS_P_STP_DEX", "=", "KS_STP_DEX()"]},
-	{"math": [ "KS_P_STP_INT", "=", "KS_STP_INT()"]},
-	{"math": [ "KS_P_STP_PER", "=", "KS_STP_PER()"]},
-	{"math": [ "KS_P_STP_STR", "=", "KS_STP_STR()"]},
-	 {
-      "if": {
-  "and": [
-    { "u_has_profession": "prof_knives_familiar" },
-	{ "u_has_profession": "prof_knives_familiar" }
-
-  ]
-},
-	 "then": [{"math": [ "prof_knives_familiar", "=", "1"]},{"math": [ "prof_knives_familiar", "=", "1"]}],
-      "else": { "u_message": "Canceled" }
-    }
-	] 
+      {
+        "if": { "and": [ { "u_has_proficiency": "prof_knives_familiar" }, { "math": [ "prof_knives_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_knives_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knives_pro" }, { "math": [ "prof_knives_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_knives_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knives_master" }, { "math": [ "prof_knives_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_knives_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_shivs_familiar" }, { "math": [ "prof_shivs_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_shivs_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_shivs_pro" }, { "math": [ "prof_shivs_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_shivs_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_shivs_master" }, { "math": [ "prof_shivs_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_shivs_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_batons_familiar" }, { "math": [ "prof_batons_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_batons_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_batons_pro" }, { "math": [ "prof_batons_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_batons_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_batons_master" }, { "math": [ "prof_batons_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_batons_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_medium_swords_familiar" }, { "math": [ "prof_medium_swords_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_medium_swords_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_medium_swords_pro" }, { "math": [ "prof_medium_swords_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] },{ "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_medium_swords_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_medium_swords_master" }, { "math": [ "prof_medium_swords_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] },{ "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_medium_swords_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_short_swords_familiar" }, { "math": [ "prof_short_swords_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_short_swords_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_short_swords_pro" }, { "math": [ "prof_short_swords_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_short_swords_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_short_swords_master" }, { "math": [ "prof_short_swords_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_short_swords_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_auto_rifles_familiar" }, { "math": [ "prof_auto_rifles_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_auto_rifles_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_auto_rifles_pro" }, { "math": [ "prof_auto_rifles_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_auto_rifles_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_auto_rifles_master" }, { "math": [ "prof_auto_rifles_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_auto_rifles_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_auto_pistols_familiar" }, { "math": [ "prof_auto_pistols_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_auto_pistols_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_auto_pistols_pro" }, { "math": [ "prof_auto_pistols_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_auto_pistols_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_auto_pistols_master" }, { "math": [ "prof_auto_pistols_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_auto_pistols_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_quarterstaves_familiar" }, { "math": [ "prof_quarterstaves_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_quarterstaves_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_quarterstaves_pro" }, { "math": [ "prof_quarterstaves_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_quarterstaves_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_quarterstaves_master" }, { "math": [ "prof_quarterstaves_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] },{ "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_quarterstaves_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fencing_weapons_familiar" }, { "math": [ "prof_fencing_weapons_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_fencing_weapons_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fencing_weapons_pro" }, { "math": [ "prof_fencing_weapons_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_fencing_weapons_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fencing_weapons_master" }, { "math": [ "prof_fencing_weapons_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_fencing_weapons_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_claws_familiar" }, { "math": [ "prof_claws_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1.5" ] }, { "math": [ "prof_claws_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_claws_pro" }, { "math": [ "prof_claws_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2.5" ] }, { "math": [ "prof_claws_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_claws_master" }, { "math": [ "prof_claws_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "4" ] }, { "math": [ "prof_claws_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_hooking_familiar" }, { "math": [ "prof_hooking_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_hooking_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_hooking_pro" }, { "math": [ "prof_hooking_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_hooking_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_hooking_master" }, { "math": [ "prof_hooking_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_hooking_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_polearms_familiar" }, { "math": [ "prof_polearms_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_polearms_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_polearms_pro" }, { "math": [ "prof_polearms_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_polearms_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_polearms_master" }, { "math": [ "prof_polearms_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_polearms_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bionics_familiar" }, { "math": [ "prof_bionics_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_bionics_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bionics_pro" }, { "math": [ "prof_bionics_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_bionics_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bionics_master" }, { "math": [ "prof_bionics_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_bionics_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_spears_familiar" }, { "math": [ "prof_spears_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_spears_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_spears_pro" }, { "math": [ "prof_spears_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_spears_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_spears_master" }, { "math": [ "prof_spears_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_spears_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_thrusting_swords_familiar" }, { "math": [ "prof_thrusting_swords_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_thrusting_swords_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_thrusting_swords_pro" }, { "math": [ "prof_thrusting_swords_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_thrusting_swords_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_thrusting_swords_master" }, { "math": [ "prof_thrusting_swords_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_thrusting_swords_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_long_swords_familiar" }, { "math": [ "prof_long_swords_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_long_swords_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_long_swords_pro" }, { "math": [ "prof_long_swords_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_long_swords_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_long_swords_master" }, { "math": [ "prof_long_swords_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_long_swords_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bionic_swords_familiar" }, { "math": [ "prof_bionic_swords_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_bionic_swords_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bionic_swords_pro" }, { "math": [ "prof_bionic_swords_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_bionic_swords_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bionic_swords_master" }, { "math": [ "prof_bionic_swords_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_bionic_swords_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_flails_familiar" }, { "math": [ "prof_flails_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_flails_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_flails_pro" }, { "math": [ "prof_flails_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_flails_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_flails_master" }, { "math": [ "prof_flails_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_flails_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_maces_familiar" }, { "math": [ "prof_maces_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_maces_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_maces_pro" }, { "math": [ "prof_maces_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_maces_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_maces_master" }, { "math": [ "prof_maces_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_maces_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_swords_familiar" }, { "math": [ "prof_great_swords_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1.5" ] }, { "math": [ "prof_great_swords_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_swords_pro" }, { "math": [ "prof_great_swords_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2.5" ] }, { "math": [ "prof_great_swords_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_swords_master" }, { "math": [ "prof_great_swords_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "4" ] }, { "math": [ "prof_great_swords_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_hammers_familiar" }, { "math": [ "prof_great_hammers_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_great_hammers_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_hammers_pro" }, { "math": [ "prof_great_hammers_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_great_hammers_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_hammers_master" }, { "math": [ "prof_great_hammers_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "5" ] }, { "math": [ "prof_great_hammers_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_axes_familiar" }, { "math": [ "prof_great_axes_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1.5" ] }, { "math": [ "prof_great_axes_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_axes_pro" }, { "math": [ "prof_great_axes_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2.5" ] }, { "math": [ "prof_great_axes_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_great_axes_master" }, { "math": [ "prof_great_axes_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "4" ] }, { "math": [ "prof_great_axes_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_hand_axes_familiar" }, { "math": [ "prof_hand_axes_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_hand_axes_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_hand_axes_pro" }, { "math": [ "prof_hand_axes_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_hand_axes_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_hand_axes_master" }, { "math": [ "prof_hand_axes_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_hand_axes_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_unarmed_familiar" }, { "math": [ "prof_unarmed_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_unarmed_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_unarmed_pro" }, { "math": [ "prof_unarmed_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_unarmed_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_unarmed_master" }, { "math": [ "prof_unarmed_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_unarmed_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_whips_familiar" }, { "math": [ "prof_whips_familiar", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_whips_familiar", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_whips_pro" }, { "math": [ "prof_whips_pro", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_whips_pro", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_whips_master" }, { "math": [ "prof_whips_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "4" ] }, { "math": [ "prof_whips_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_parkour" }, { "math": [ "prof_parkour", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "3" ] }, { "math": [ "prof_parkour", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_athlete_basic" }, { "math": [ "prof_athlete_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_athlete_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_athlete_expert" }, { "math": [ "prof_athlete_expert", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_athlete_expert", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_athlete_master" }, { "math": [ "prof_athlete_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "4" ] }, { "math": [ "prof_athlete_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_butchering_basic" }, { "math": [ "prof_butchering_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_butchering_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_butchering_adv" }, { "math": [ "prof_butchering_adv", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "4" ] }, { "math": [ "prof_butchering_adv", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_skinning_basic" }, { "math": [ "prof_skinning_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_skinning_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_skinning_adv" }, { "math": [ "prof_skinning_adv", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "4" ] }, { "math": [ "prof_skinning_adv", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_intro_chemistry" }, { "math": [ "prof_intro_chemistry", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_intro_chemistry", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gross_anatomy" }, { "math": [ "prof_gross_anatomy", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "1" ] }, { "math": [ "prof_gross_anatomy", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_intro_biology" }, { "math": [ "prof_intro_biology", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_intro_biology", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_organic_chemistry" }, { "math": [ "prof_organic_chemistry", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_organic_chemistry", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_inorganic_chemistry" }, { "math": [ "prof_inorganic_chemistry", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_inorganic_chemistry", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_mycology" }, { "math": [ "prof_mycology", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_mycology", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_mycology_advanced" }, { "math": [ "prof_mycology_advanced", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "4" ] }, { "math": [ "prof_mycology_advanced", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_biochemistry" }, { "math": [ "prof_biochemistry", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_biochemistry", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_physiology" }, { "math": [ "prof_physiology", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_physiology", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_xenology" }, { "math": [ "prof_xenology", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_xenology", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_intro_chem_synth" }, { "math": [ "prof_intro_chem_synth", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_intro_chem_synth", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_chem_synth" }, { "math": [ "prof_chem_synth", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "3" ] }, { "math": [ "prof_chem_synth", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_distilling" }, { "math": [ "prof_distilling", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_distilling", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_metallurgy" }, { "math": [ "prof_metallurgy", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_metallurgy", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_pharmaceutical" }, { "math": [ "prof_pharmaceutical", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_pharmaceutical", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_elec_soldering" }, { "math": [ "prof_elec_soldering", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_elec_soldering", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_elec_circuits" }, { "math": [ "prof_elec_circuits", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_elec_circuits", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_elec_semiconductors" }, { "math": [ "prof_elec_semiconductors", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_elec_semiconductors", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_elec_integrated_circuits" }, { "math": [ "prof_elec_integrated_circuits", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "3" ] }, { "math": [ "prof_elec_integrated_circuits", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_electromagnetics" }, { "math": [ "prof_electromagnetics", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_electromagnetics", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_shock_weapons" }, { "math": [ "prof_shock_weapons", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_shock_weapons", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_food_prep" }, { "math": [ "prof_food_prep", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_food_prep", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knife_skills" }, { "math": [ "prof_knife_skills", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_knife_skills", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_baking" }, { "math": [ "prof_baking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_baking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_baking_bread" }, { "math": [ "prof_baking_bread", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_baking_bread", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_baking_desserts_1" }, { "math": [ "prof_baking_desserts_1", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_baking_desserts_1", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_baking_desserts_2" }, { "math": [ "prof_baking_desserts_2", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_baking_desserts_2", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_frying" }, { "math": [ "prof_frying", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_frying", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_frying_bread" }, { "math": [ "prof_frying_bread", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_frying_bread", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_frying_dessert" }, { "math": [ "prof_frying_dessert", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_frying_dessert", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fermenting" }, { "math": [ "prof_fermenting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_fermenting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_beverage_distilling" }, { "math": [ "prof_beverage_distilling", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_beverage_distilling", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_brewing" }, { "math": [ "prof_brewing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_brewing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_winemaking" }, { "math": [ "prof_winemaking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_winemaking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_lactofermenting" }, { "math": [ "prof_lactofermenting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_lactofermenting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_cheesemaking_1" }, { "math": [ "prof_cheesemaking_1", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_cheesemaking_1", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_cheesemaking_2" }, { "math": [ "prof_cheesemaking_2", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_cheesemaking_2", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_preservation" }, { "math": [ "prof_preservation", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_preservation", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_food_curing" }, { "math": [ "prof_food_curing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_food_curing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_food_canning" }, { "math": [ "prof_food_canning", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_food_canning", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_scav_cooking" }, { "math": [ "prof_scav_cooking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_scav_cooking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_forage_cooking" }, { "math": [ "prof_forage_cooking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_forage_cooking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gunsmithing_basic" }, { "math": [ "prof_gunsmithing_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_gunsmithing_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gunsmithing_improv" }, { "math": [ "prof_gunsmithing_improv", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_gunsmithing_improv", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gunsmithing_antique" }, { "math": [ "prof_gunsmithing_antique", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_gunsmithing_antique", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gunsmithing_spring" }, { "math": [ "prof_gunsmithing_spring", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_gunsmithing_spring", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gunsmithing_revolver" }, { "math": [ "prof_gunsmithing_revolver", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_gunsmithing_revolver", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gun_cleaning" }, { "math": [ "prof_gun_cleaning", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_gun_cleaning", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wound_care" }, { "math": [ "prof_wound_care", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_wound_care", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wound_care_expert" }, { "math": [ "prof_wound_care_expert", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_wound_care_expert", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_burn_care" }, { "math": [ "prof_burn_care", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_burn_care", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_dissect_humans" }, { "math": [ "prof_dissect_humans", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "5" ] }, { "math": [ "prof_dissect_humans", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_basic_engines" }, { "math": [ "prof_basic_engines", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_basic_engines", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_high_pressure_systems" }, { "math": [ "prof_high_pressure_systems", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "3" ] }, { "math": [ "prof_high_pressure_systems", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_chemical_engineering" }, { "math": [ "prof_chemical_engineering", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "5" ] }, { "math": [ "prof_chemical_engineering", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_pneumatics" }, { "math": [ "prof_pneumatics", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_dissect_humans", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_aircraft_mechanic" }, { "math": [ "prof_aircraft_mechanic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "4" ] }, { "math": [ "prof_aircraft_mechanic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_metalworking" }, { "math": [ "prof_metalworking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_metalworking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_welding_basic" }, { "math": [ "prof_welding_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_welding_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_welding" }, { "math": [ "prof_welding", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_welding", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_blacksmithing" }, { "math": [ "prof_blacksmithing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_blacksmithing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_redsmithing" }, { "math": [ "prof_redsmithing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_redsmithing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_redsmithing_adv" }, { "math": [ "prof_redsmithing_adv", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_redsmithing_adv", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fine_metalsmithing" }, { "math": [ "prof_fine_metalsmithing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_fine_metalsmithing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_armorsmithing" }, { "math": [ "prof_armorsmithing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_armorsmithing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bladesmith" }, { "math": [ "prof_bladesmith", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_bladesmith", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_toolsmithing" }, { "math": [ "prof_toolsmithing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_toolsmithing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wiremaking" }, { "math": [ "prof_wiremaking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_wiremaking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_case_hardening" }, { "math": [ "prof_case_hardening", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_case_hardening", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_quenching" }, { "math": [ "prof_quenching", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_quenching", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_machining_basic" }, { "math": [ "prof_machining_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_machining_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knapping" }, { "math": [ "prof_knapping", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_knapping", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knapping_speed" }, { "math": [ "prof_knapping_speed", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_knapping_speed", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_glassblowing" }, { "math": [ "prof_glassblowing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_glassblowing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_plumbing" }, { "math": [ "prof_plumbing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_plumbing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_pottery" }, { "math": [ "prof_pottery", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_pottery", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bowyery" }, { "math": [ "prof_bowyery", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_bowyery", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fletching" }, { "math": [ "prof_fletching", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_fletching", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_basketweaving" }, { "math": [ "prof_basketweaving", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_basketweaving", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_pottery_glazing" }, { "math": [ "prof_pottery_glazing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_pottery_glazing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_plasticworking" }, { "math": [ "prof_plasticworking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_plasticworking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_carving" }, { "math": [ "prof_carving", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_carving", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_gem_setting" }, { "math": [ "prof_gem_setting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_gem_setting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_handloading" }, { "math": [ "prof_handloading", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_handloading", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_appliance_repair" }, { "math": [ "prof_appliance_repair", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_appliance_repair", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_articulation" }, { "math": [ "prof_articulation", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_articulation", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_closures" }, { "math": [ "prof_closures", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_closures", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_closures_waterproofing" }, { "math": [ "prof_closures_waterproofing", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_closures_waterproofing", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_elastics" }, { "math": [ "prof_elastics", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_elastics", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_cobbling" }, { "math": [ "prof_cobbling", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_cobbling", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_spinning" }, { "math": [ "prof_spinning", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_spinning", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_weaving" }, { "math": [ "prof_weaving", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_weaving", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_millinery" }, { "math": [ "prof_millinery", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_millinery", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knitting" }, { "math": [ "prof_knitting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_knitting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_knitting_speed" }, { "math": [ "prof_knitting_speed", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_knitting_speed", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_leatherworking_basic" }, { "math": [ "prof_leatherworking_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_leatherworking_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_furriery" }, { "math": [ "prof_furriery", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_furriery", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_chitinworking" }, { "math": [ "prof_chitinworking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_chitinworking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_chain_armour" }, { "math": [ "prof_chain_armour", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_chain_armour", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_polymerworking" }, { "math": [ "prof_polymerworking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_polymerworking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_quilting" }, { "math": [ "prof_quilting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_quilting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_lockpicking" }, { "math": [ "prof_lockpicking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_lockpicking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_lockpicking_expert" }, { "math": [ "prof_lockpicking_expert", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_quilting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_safecracking" }, { "math": [ "prof_safecracking", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_safecracking", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_traps" }, { "math": [ "prof_traps", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_traps", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_trapsetting" }, { "math": [ "prof_trapsetting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_trapsetting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_disarming" }, { "math": [ "prof_disarming", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_disarming", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_spotting" }, { "math": [ "prof_spotting", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_spotting", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_helicopter_pilot" }, { "math": [ "prof_helicopter_pilot", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "3" ] }, { "math": [ "prof_helicopter_pilot", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_boat_pilot" }, { "math": [ "prof_boat_pilot", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_boat_pilot", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_driver" }, { "math": [ "prof_driver", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_driver", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_zombie" }, { "math": [ "prof_wp_zombie", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_zombie", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_demihuman" }, { "math": [ "prof_wp_demihuman", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_demihuman", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_amalgamation" }, { "math": [ "prof_wp_amalgamation", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_amalgamation", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_syn_armored" }, { "math": [ "prof_wp_syn_armored", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_wp_syn_armored", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_nat_armored" }, { "math": [ "prof_wp_nat_armored", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_nat_armored", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_cyborg" }, { "math": [ "prof_wp_cyborg", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_cyborg", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_basic_amphibian" }, { "math": [ "prof_wp_basic_amphibian", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_wp_basic_amphibian", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_basic_bird" }, { "math": [ "prof_wp_basic_bird", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_basic_bird", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_canine" }, { "math": [ "prof_wp_canine", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_canine", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_ungulate" }, { "math": [ "prof_wp_ungulate", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_ungulate", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_basic_bug" }, { "math": [ "prof_wp_basic_bug", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_basic_bug", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_beetle" }, { "math": [ "prof_wp_beetle", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_beetle", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_centipede" }, { "math": [ "prof_wp_centipede", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_centipede", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_hymenoptera" }, { "math": [ "prof_wp_hymenoptera", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_hymenoptera", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_spider" }, { "math": [ "prof_wp_spider", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_spider", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_flying" }, { "math": [ "prof_wp_flying", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_flying", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_skeleton" }, { "math": [ "prof_wp_skeleton", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_skeleton", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_child" }, { "math": [ "prof_wp_child", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_child", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_hulk" }, { "math": [ "prof_wp_hulk", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_hulk", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_netherium_abomination" }, { "math": [ "prof_wp_netherium_abomination", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_netherium_abomination", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_fungaloid_basic" }, { "math": [ "prof_wp_fungaloid_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_fungaloid_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_fungaloid_advanced" }, { "math": [ "prof_wp_fungaloid_advanced", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "2" ] }, { "math": [ "prof_wp_fungaloid_advanced", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_power_leech_basic" }, { "math": [ "prof_wp_power_leech_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_power_leech_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_power_leech_advanced" }, { "math": [ "prof_wp_power_leech_advanced", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_power_leech_advanced", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_triffid_basic" }, { "math": [ "prof_wp_triffid_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_triffid_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_wp_triffid_advanced" }, { "math": [ "prof_wp_triffid_advanced", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_PER", "+=", "1" ] }, { "math": [ "prof_wp_triffid_advanced", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fibers" }, { "math": [ "prof_fibers", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_fibers", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_fibers_rope" }, { "math": [ "prof_fibers_rope", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_fibers_rope", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_tanning_basic" }, { "math": [ "prof_tanning_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "1" ] }, { "math": [ "prof_tanning_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_tanning" }, { "math": [ "prof_tanning", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_INT", "+=", "2" ] }, { "math": [ "prof_tanning", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bow_basic" }, { "math": [ "prof_bow_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "1" ] }, { "math": [ "prof_bow_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bow_expert" }, { "math": [ "prof_bow_expert", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "2" ] }, { "math": [ "prof_bow_expert", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_bow_master" }, { "math": [ "prof_bow_master", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_STR", "+=", "3" ] }, { "math": [ "prof_bow_master", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_carpentry_basic" }, { "math": [ "prof_carpentry_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "1" ] }, { "math": [ "prof_carpentry_basic", "=", "1" ] } ]
+      },
+	  {
+        "if": { "and": [ { "u_has_proficiency": "prof_luthier_basic" }, { "math": [ "prof_luthier_basic", "==", "0" ] } ] },
+        "then": [ { "math": [ "KS_EOC_DEX", "+=", "2" ] }, { "math": [ "prof_luthier_basic", "=", "1" ] } ]
+      }
+	  
+    ]
   },
   {
-    "type": "mutation",
-    "id": "stats_through_proficiencies",
-    "name": { "str": "U cant see this" },
-    "description": "If u see this, then this bug.",
-    "points": 1,
-    "enchantments": [ { "values": 
-	[ 
-	{ "value": "DEXTERITY", "add": "KS_STP_DEX()" },
-	{ "value": "INTELLIGENCE", "add": "KS_STP_INT()" },
-	{ "value": "PERCEPTION", "add": "KS_STP_PER()" },
-	{ "value": "STRENGTH", "add": "KS_STP_STR()" } 
-	] } ]
+    "type": "EXTERNAL_OPTION",
+    "name": "PLAYER_MAX_STR_VALUE",
+    "//": "Sets a cap on maximum effective strength for characters.",
+    "stype": "int",
+    "value": 100
+  },
+  {
+    "type": "EXTERNAL_OPTION",
+    "name": "PLAYER_MAX_DEX_VALUE",
+    "//": "Sets a cap on maximum effective dexterity for characters.",
+    "stype": "int",
+    "value": 100
+  },
+  {
+    "type": "EXTERNAL_OPTION",
+    "name": "PLAYER_MAX_PER_VALUE",
+    "//": "Sets a cap on maximum effective perception for characters.",
+    "stype": "int",
+    "value": 100
+  },
+  {
+    "type": "EXTERNAL_OPTION",
+    "name": "PLAYER_MAX_INT_VALUE",
+    "//": "Sets a cap on maximum effective intelligence for characters.",
+    "stype": "int",
+    "value": 100
   },
   {
     "type": "jmath_function",
@@ -95,33 +1007,34 @@
     "id": "установка_модуля_статов",
     "eoc_type": "EVENT",
     "required_event": "game_load",
-    "condition": {"u_has_trait": "stats_through_proficiencies"},
-    "effect": [
-		{ "gains_mutation": "stats_through_proficiencies" }
-	] 
+    "condition": { "not": { "u_has_trait": "MUT_stat" } },
+    "effect": [ { "u_add_trait": "MUT_stat" } ]
   },
   {
     "type": "effect_on_condition",
     "id": "установка_модуля_статов1",
     "eoc_type": "EVENT",
     "required_event": "game_start",
-    "condition": {"u_has_trait": "stats_through_proficiencies"},
-    "effect": [
-		{ "gains_mutation": "stats_through_proficiencies" }
-	] 
+    "condition": { "not": { "u_has_trait": "MUT_stat" } },
+    "effect": [ { "u_add_trait": "MUT_stat" } ]
   },
   {
     "type": "mutation",
-    "id": "stats_through_proficiencies",
+    "id": "MUT_stat",
     "name": { "str": "U cant see this" },
     "description": "If u see this, then this bug.",
     "points": 1,
-    "enchantments": [ { "values": 
-	[ 
-	{ "value": "DEXTERITY", "add": "KS_P_STP_DEX" },
-	{ "value": "INTELLIGENCE", "add": "KS_P_STP_INT" },
-	{ "value": "PERCEPTION", "add": "KS_P_STP_PER" },
-	{ "value": "STRENGTH", "add": "KS_P_STP_STR" } 
-	] } ]
+	"purifiable": false,
+	"player_display": false, 	
+    "enchantments": [
+      {
+        "values": [
+          { "value": "DEXTERITY", "add": { "math": [ "KS_STP_DEX()" ] } },
+          { "value": "INTELLIGENCE", "add": { "math": [ "KS_STP_INT()" ] } },
+          { "value": "PERCEPTION", "add": { "math": [ "KS_STP_PER()" ] } },
+          { "value": "STRENGTH", "add": { "math": [ "KS_STP_STR()" ] } }
+        ]
+      }
+    ]
   }
 ]
