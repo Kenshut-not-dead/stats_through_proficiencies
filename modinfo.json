@@ -27,6 +27,17 @@
   },
   {
     "type": "effect_on_condition",
+    "id": "ты_здох",
+    "eoc_type": "AVATAR_DEATH",
+    "effect": [
+	{ "math": [ "KS_EOC_DEX", "=", "0" ] },
+	{ "math": [ "KS_EOC_INT", "=", "0" ] },
+	{ "math": [ "KS_EOC_STR", "=", "0" ] },
+	{ "math": [ "KS_EOC_PER", "=", "0" ] }
+	]
+  },
+  {
+    "type": "effect_on_condition",
     "id": "Расчет_статов",
     "eoc_type": "EVENT",
     "required_event": "character_wakes_up",
