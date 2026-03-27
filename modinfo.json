@@ -1,0 +1,127 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "stats_through_proficiencies",
+    "name": "stats through proficiencies",
+    "authors": [ "Kenshut" ],
+    "maintainers": [ "Kenshut" ],
+    "description": "Now u can become stronger with proficiencies.",
+    "category": "rebalance",
+    "dependencies": [ "dda" ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "Запускаем_расчет_при_первом_старте",
+    "eoc_type": "EVENT",
+    "required_event": "game_start",
+    "condition": {"u_has_trait": "stats_through_proficiencies"},
+    "effect": [
+		{ "run_eocs": "Расчет_статов" }
+	] 
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "Запускаем_расчет_при_первом_старте1",
+    "eoc_type": "EVENT",
+    "required_event": "game_load",
+    "condition": {"u_has_trait": "stats_through_proficiencies"},
+    "effect": [
+		{ "run_eocs": "Расчет_статов" }
+	] 
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "Расчет_статов",
+    "eoc_type": "EVENT",
+    "required_event": "character_wakes_up",
+    "effect": [
+	{"math": [ "KS_P_STP_DEX", "=", "KS_STP_DEX()"]},
+	{"math": [ "KS_P_STP_INT", "=", "KS_STP_INT()"]},
+	{"math": [ "KS_P_STP_PER", "=", "KS_STP_PER()"]},
+	{"math": [ "KS_P_STP_STR", "=", "KS_STP_STR()"]},
+	 {
+      "if": {
+  "and": [
+    { "u_has_profession": "prof_knives_familiar" },
+	{ "u_has_profession": "prof_knives_familiar" }
+
+  ]
+},
+	 "then": [{"math": [ "prof_knives_familiar", "=", "1"]},{"math": [ "prof_knives_familiar", "=", "1"]}],
+      "else": { "u_message": "Canceled" }
+    }
+	] 
+  },
+  {
+    "type": "mutation",
+    "id": "stats_through_proficiencies",
+    "name": { "str": "U cant see this" },
+    "description": "If u see this, then this bug.",
+    "points": 1,
+    "enchantments": [ { "values": 
+	[ 
+	{ "value": "DEXTERITY", "add": "KS_STP_DEX()" },
+	{ "value": "INTELLIGENCE", "add": "KS_STP_INT()" },
+	{ "value": "PERCEPTION", "add": "KS_STP_PER()" },
+	{ "value": "STRENGTH", "add": "KS_STP_STR()" } 
+	] } ]
+  },
+  {
+    "type": "jmath_function",
+    "id": "KS_STP_STR",
+    "num_args": 0,
+    "return": "KS_EOC_STR/5"
+  },
+  {
+    "type": "jmath_function",
+    "id": "KS_STP_DEX",
+    "num_args": 0,
+    "return": "KS_EOC_DEX/5"
+  },
+  {
+    "type": "jmath_function",
+    "id": "KS_STP_INT",
+    "num_args": 0,
+    "return": "KS_EOC_INT/5"
+  },
+  {
+    "type": "jmath_function",
+    "id": "KS_STP_PER",
+    "num_args": 0,
+    "return": "KS_EOC_PER/5"
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "установка_модуля_статов",
+    "eoc_type": "EVENT",
+    "required_event": "game_load",
+    "condition": {"u_has_trait": "stats_through_proficiencies"},
+    "effect": [
+		{ "gains_mutation": "stats_through_proficiencies" }
+	] 
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "установка_модуля_статов1",
+    "eoc_type": "EVENT",
+    "required_event": "game_start",
+    "condition": {"u_has_trait": "stats_through_proficiencies"},
+    "effect": [
+		{ "gains_mutation": "stats_through_proficiencies" }
+	] 
+  },
+  {
+    "type": "mutation",
+    "id": "stats_through_proficiencies",
+    "name": { "str": "U cant see this" },
+    "description": "If u see this, then this bug.",
+    "points": 1,
+    "enchantments": [ { "values": 
+	[ 
+	{ "value": "DEXTERITY", "add": "KS_P_STP_DEX" },
+	{ "value": "INTELLIGENCE", "add": "KS_P_STP_INT" },
+	{ "value": "PERCEPTION", "add": "KS_P_STP_PER" },
+	{ "value": "STRENGTH", "add": "KS_P_STP_STR" } 
+	] } ]
+  }
+]
