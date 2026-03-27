@@ -14,7 +14,7 @@
     "id": "Запускаем_расчет_при_первом_старте",
     "eoc_type": "EVENT",
     "required_event": "game_start",
-    "condition": { "u_has_trait": "stats_through_proficiencies" },
+    "condition": { "u_has_trait": "MUT_stat" },
     "effect": [ { "run_eocs": "Расчет_статов" } ]
   },
   {
@@ -22,7 +22,7 @@
     "id": "Запускаем_расчет_при_первом_старте1",
     "eoc_type": "EVENT",
     "required_event": "game_load",
-    "condition": { "u_has_trait": "stats_through_proficiencies" },
+    "condition": { "u_has_trait": "MUT_stat" },
     "effect": [ { "run_eocs": "Расчет_статов" } ]
   },
   {
